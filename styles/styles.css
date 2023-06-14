@@ -1,0 +1,33 @@
+body {
+    box-sizing: border-box;
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 700px;
+    margin: 0 auto;
+    background-color: beige;
+}
+
+.flex-container {
+    background-color: coral;
+    display: flex;
+    flex: 1 0 500px;
+    height: 500px;
+}
+
+.flex-row-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.flex-item {
+    padding: 20px;
+    border: 1px solid black;
+    background-color: aquamarine;
+    flex-grow: 1
+    
+}
