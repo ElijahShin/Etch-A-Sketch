@@ -1,3 +1,6 @@
+const DEFAULT_ROW_COL = 4;
+
+
 function createGrid(row,col) {
     let parentContainer = document.querySelector('.flex-container');
     let rowContainer;
@@ -26,4 +29,36 @@ function createGrid(row,col) {
 
 }
 
-createGrid(4,4);
+function deleteGrid() {
+    let divItems = document.querySelectorAll('.flex-item');
+    let divContainers = document.querySelectorAll('.flex-row-container');
+
+    divItems.forEach(item => {
+        item.remove();
+    });
+
+    divContainers.forEach(container => {
+        container.remove();
+    })
+}
+
+function updateRange () {
+    let input = document.querySelector('input');
+
+    input.addEventListener('input', event => {
+        let value = event.target.value;
+
+        labelText(value);
+        deleteGrid();
+        createGrid(value,value);
+    });
+}
+
+function labelText(value) {
+    let label = document.querySelector('label');
+    label.textContent = `${value} x ${value}`;
+}
+
+createGrid(DEFAULT_ROW_COL,DEFAULT_ROW_COL);
+labelText(DEFAULT_ROW_COL);
+updateRange();
