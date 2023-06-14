@@ -18,15 +18,12 @@ function createGrid(row,col) {
             flexItem.classList.add('flex-item');
 
             flexItem.addEventListener('mouseenter', event => {
-                event.target.style.backgroundColor = 'blue';
+                event.target.style.backgroundColor = 'black';
             });
 
             rowContainer.appendChild(flexItem);
-            
-
         }
     }
-
 }
 
 function deleteGrid() {
