@@ -4,8 +4,9 @@ body {
 
 .container {
     display: flex;
-    justify-content: center;
-    width: 500px;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 1000px;
     margin: 0 auto;
     background-color: beige;
 }
@@ -13,7 +14,7 @@ body {
 .flex-container {
     background-color: coral;
     display: flex;
-    flex: 1 0 500px;
+    flex: 0 0 500px;
     min-height: 500px;
 }
 
@@ -29,4 +30,16 @@ body {
     background-color: aquamarine;
     flex-grow: 1;
     
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+button {
+    border: none;
+    background-color: #ededed;
+    padding: 15px 40px;
 }
