@@ -1,5 +1,4 @@
-const DEFAULT_ROW_COL = 4;
-
+const DEFAULT_ROW_COL = 32;
 
 function createGrid(row,col) {
     let parentContainer = document.querySelector('.flex-container');
@@ -16,14 +15,39 @@ function createGrid(row,col) {
             
             let flexItem = document.createElement('div');
             flexItem.classList.add('flex-item');
-
-            flexItem.addEventListener('mouseenter', event => {
-                event.target.style.backgroundColor = 'black';
-            });
-
             rowContainer.appendChild(flexItem);
         }
     }
+}
+
+function draw() {
+    let gridBoxes = document.querySelectorAll('.flex-item');
+    let btn = document.querySelector('.rainbow');
+
+    let rgbValues = [];
+    let isRainbow = false;
+
+    btn.addEventListener('click', () => {        
+        isRainbow = true;
+    });
+
+    gridBoxes.forEach(box => {
+        box.addEventListener('mouseenter', event => {
+            for(let i = 0; i < 3; i++) {
+                let rand = Math.floor((Math.random() * 255) + 1);
+                rgbValues[i] = rand;
+            }
+
+            if(isRainbow) {
+                event.target.style.backgroundColor = `rgb(${rgbValues[0]},${rgbValues[1]},${rgbValues[2]})`;
+            } else {
+                event.target.style.backgroundColor = 'rgb(49, 49, 49)';
+            }
+            
+        });
+    });
+
+    
 }
 
 function deleteGrid() {
@@ -48,14 +72,31 @@ function updateRange () {
         labelText(value);
         deleteGrid();
         createGrid(value,value);
+        draw();
     });
 }
 
 function labelText(value) {
     let label = document.querySelector('label');
+
     label.textContent = `${value} x ${value}`;
 }
 
+function clear() {
+    let btn = document.querySelector('.clear');
+    
+    btn.addEventListener('click', () => {
+        let gridBoxes = document.querySelectorAll('.flex-item');
+
+        gridBoxes.forEach(box => {
+            box.style.backgroundColor = 'white';
+        });
+    });
+}
+
 createGrid(DEFAULT_ROW_COL,DEFAULT_ROW_COL);
+draw();
 labelText(DEFAULT_ROW_COL);
 updateRange();
+clear();
+
