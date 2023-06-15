@@ -33,10 +33,7 @@ function draw() {
 
     gridBoxes.forEach(box => {
         box.addEventListener('mouseenter', event => {
-            for(let i = 0; i < 3; i++) {
-                let rand = Math.floor((Math.random() * 255) + 1);
-                rgbValues[i] = rand;
-            }
+            rgbValues = randomNum();
 
             if(isRainbow) {
                 event.target.style.backgroundColor = `rgb(${rgbValues[0]},${rgbValues[1]},${rgbValues[2]})`;
@@ -45,9 +42,18 @@ function draw() {
             }
             
         });
-    });
+    });    
+}
 
-    
+function randomNum() {
+    let arr = [];
+
+    for(let i = 0; i < 3; i++) {
+        let rand = Math.floor((Math.random() * 255) + 1);
+        arr[i] = rand;
+    }
+
+    return arr;
 }
 
 function deleteGrid() {
@@ -64,7 +70,7 @@ function deleteGrid() {
 }
 
 function updateRange () {
-    let input = document.querySelector('input');
+    let input = document.querySelector(`input[type='range']`);
 
     input.addEventListener('input', event => {
         let value = event.target.value;
