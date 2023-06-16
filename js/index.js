@@ -23,20 +23,36 @@ function createGrid(row,col) {
 function draw() {
     let gridBoxes = document.querySelectorAll('.flex-item');
     let btn = document.querySelector('.rainbow');
+    let colorPicker = document.querySelector(`input[type='color']`);
+    let colorBtn = document.querySelectorAll('.color'); 
+
+    console.log(colorBtn[1]);
 
     let rgbValues = [];
-    let isRainbow = false;
+    let btnClicked = 'color';
+
+    colorBtn[1].addEventListener('click', () => {
+        btnClicked = 'color';
+    });
+
+    colorPicker.addEventListener('input', () => {
+        btnClicked = 'color';
+    });
 
     btn.addEventListener('click', () => {        
-        isRainbow = true;
+        btnClicked = 'rainbow';
     });
 
     gridBoxes.forEach(box => {
         box.addEventListener('mouseenter', event => {
             rgbValues = randomNum();
 
-            if(isRainbow) {
+            if(btnClicked === 'rainbow') {
                 event.target.style.backgroundColor = `rgb(${rgbValues[0]},${rgbValues[1]},${rgbValues[2]})`;
+
+            } else if(btnClicked === 'color') {
+                event.target.style.backgroundColor = `${colorPicker.value}`; 
+                
             } else {
                 event.target.style.backgroundColor = 'rgb(49, 49, 49)';
             }
